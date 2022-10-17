@@ -112,7 +112,7 @@ class ClickpostController extends Controller
         $folder = date("Y_m_d_H_i_s", strtotime($file->uploaded_at));
 
         $fileName = $folder.'.zip';
-        if ($zip->open(public_path($fileName), \ZipArchive::CREATE)== TRUE)
+        if ($zip->open(public_path("uploads/$fileName"), \ZipArchive::CREATE)== TRUE)
         {
             $files = File::files(public_path("uploads/$folder"));
             foreach ($files as $key => $value){
@@ -122,7 +122,7 @@ class ClickpostController extends Controller
             $zip->close();
         }
 
-        return response()->download(public_path($fileName));
+        return response()->download(public_path("uploads/$fileName"));
     }
 
 
@@ -135,7 +135,7 @@ class ClickpostController extends Controller
         $records = $query->get();
 
         $filename = time().".csv";
-        $handle = fopen($filename, 'w+');
+        $handle = fopen(public_path("uploads/$filename"), 'w+');
         fputcsv($handle, array('date', 'id', 'order_status', 'comment', 'type_of_order', 'internal_notes', 'shipping_company', 'tracking_number', 'name', 'email_id', 'user_type', 'product', 'ctype', 'customer_notify', 'orders_due_date', 'cp_id'));
 
         foreach($records as $record) {
@@ -152,7 +152,7 @@ class ClickpostController extends Controller
             'Content-Type' => 'text/csv',
         );
 
-        return Response::download($filename, $filename, $headers);
+        return Response::download(public_path("uploads/$filename"), $filename, $headers);
     }
 
     public function call_the_command(Request $request)

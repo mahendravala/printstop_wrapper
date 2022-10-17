@@ -55,7 +55,7 @@
                 </div>
             </form>
         </div>
-        <img src="{{ asset('img/shipping-methods.png') }}" class="img-responsive">
+        <img src="{{ asset('img/11.png') }}" class="img-responsive">
     </div>
 </div>
 @stop
