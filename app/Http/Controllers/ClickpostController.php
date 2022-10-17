@@ -135,7 +135,7 @@ class ClickpostController extends Controller
         $records = $query->get();
 
         $filename = time().".csv";
-        $handle = fopen($filename, 'w+');
+        $handle = fopen(public_path("uploads/$filename"), 'w+');
         fputcsv($handle, array('date', 'id', 'order_status', 'comment', 'type_of_order', 'internal_notes', 'shipping_company', 'tracking_number', 'name', 'email_id', 'user_type', 'product', 'ctype', 'customer_notify', 'orders_due_date', 'cp_id'));
 
         foreach($records as $record) {
