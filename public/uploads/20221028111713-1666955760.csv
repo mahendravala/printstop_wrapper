@@ -1,0 +1,3 @@
+drop_name,drop_address,drop_pincode,drop_phone,drop_city,drop_state,drop_country,invoice_date,quantity,price,description,length,breadth,height,weight,reference_number,order_type,invoice_value,drop_email,order_id,otp_required,shipping_type,user_type,customer_name
+Akalya Rangarajan,"No. 1, Muthumariamman Koil street, Lakshmipuram, Chromepet, Chennai",600044,9445834444,na,na,India,14-09-2022,1,500,VC,10,10,10,250,561459,PREPAID,500,rahul@printstop.co.in,561459,1,1,user_type,Clickpost
+Akalya Rangarajan,"No. 1, Muthumariamman Koil street, Lakshmipuram, Chromepet, Chennai",600044,9445834444,na,na,India,14-09-2022,1,500,VC,10,10,10,250,561459,PREPAID,500,rahul@printstop.co.in,561459,1,1,user_type,Niva Bupa

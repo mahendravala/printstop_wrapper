@@ -136,12 +136,12 @@ class ClickpostController extends Controller
 
         $filename = time().".csv";
         $handle = fopen(public_path("uploads/$filename"), 'w+');
-        fputcsv($handle, array('date', 'id', 'order_status', 'comment', 'type_of_order', 'internal_notes', 'shipping_company', 'tracking_number', 'name', 'email_id', 'user_type', 'product', 'ctype', 'customer_notify', 'orders_due_date', 'cp_id'));
+        fputcsv($handle, array('date', 'id', 'order_status', 'comment', 'type_of_order', 'internal_notes', 'shipping_company', 'tracking_number', 'name', 'email_id', 'product', 'ctype', 'customer_notify', 'orders_due_date', 'cp_id','user_type','customer_name'));
 
         foreach($records as $record) {
             fputcsv($handle, array(
-                '', $record['order_id'], 'Shipped', '','','','',$record['awb'], '', '', '', '', 
-                '', '', '', $record['cp_id']
+                '', $record['order_id'], 'Shipped', '','','', $record['shipping_company'], $record['awb'], '', '', '', 
+                '', '', '', $record['cp_id'], $record['user_type'], $record['customer_name']
                 )
             );
         }
@@ -210,7 +210,7 @@ class ClickpostController extends Controller
 
         $recommend_data = array();
         $csv = $this->csv_to_array($filepath);
-
+        // echo "<pre>";print_r($csv); exit;
         foreach ($csv as $key => $value) {
             $value['file_id'] = $id;
             $value['manifest_status'] = 0;

@@ -26,13 +26,13 @@
                 <li class="nav-item has-treeview menu-open">
                     <a href="{{ url('clickpost') }}" class="nav-link @if(str_contains(url()->current(), url('clickpost'))) active @endif">
                         <i class="nav-icon fas fa-product-hunt"></i>
-                        <p>Clickpost</p>
+                        <p>Clickpost Upload</p>
                     </a>
                 </li>
                 <li class="nav-item has-treeview menu-open">
                     <a href="{{ url('clickpost/recommendations') }}" class="nav-link @if(str_contains(url()->current(), url('clickpost/recommendations'))) active @endif">
                         <i class="nav-icon fas fa-product-hunt"></i>
-                        <p>Recommendation</p>
+                        <p>Download Files</p>
                     </a>
                 </li>
             </ul>

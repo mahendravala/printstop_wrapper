@@ -42,7 +42,7 @@
                             </div>
                             <div class="input-group-append">
                                 <span class="input-group-text">
-                                    <a href="data:text/csv;charset=utf-8,drop_name,drop_pincode,drop_city,drop_state,drop_country,drop_address,drop_phone,cod_value,invoice_date,quantity,price,invoice_number,length,breadth,height,weight,reference_number,order_type,invoice_value,drop_email,order_id,otp_required,shipping_id" download="<?php echo time(); ?>.csv">
+                                    <a href="data:text/csv;charset=utf-8,drop_name,drop_address,drop_pincode,drop_phone,drop_city,drop_state,drop_country,invoice_date,quantity,price,description,length,breadth,height,weight,reference_number,order_type,invoice_value,drop_email,order_id,otp_required,shipping_type,user_type,customer_name" download="<?php echo time(); ?>.csv">
                                         DOWNLOAD SAMPLE
                                     </a>
                                 </span>

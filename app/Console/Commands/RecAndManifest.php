@@ -114,8 +114,10 @@ class RecAndManifest extends Command
 
                     PickupRequest::where('id',$record->id)->update(
                         [
-                            'manifest_response' => json_encode($response_array), 
-                            'cp_id' => $preference->cp_id, 'awb' => $waybill, 'shipping_url' => $shipping_url,
+                            'manifest_response' => json_encode($response_array),
+                            'shipping_company' => $preference->account_code,
+                            'cp_id' => $preference->cp_id, 'awb' => $waybill,
+                            'shipping_url' => $shipping_url,
                             'manifest_status' => 1
                         ]
                     );
