@@ -221,7 +221,7 @@ class ClickpostController extends Controller
 
             $pickup_request->insert([$value]);
         }
-        echo "<pre>";    print_r($value); exit;
+//      //echo "<pre>";    print_r($value); exit;
         RecAndManifest::dispatch(['id' => $id]);
 
         return redirect("clickpost/recommendations");
