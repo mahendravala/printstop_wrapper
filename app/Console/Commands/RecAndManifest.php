@@ -54,7 +54,8 @@ class RecAndManifest extends Command
             $client = new Client([
                 'headers' => [ 'Content-Type' => 'application/json' ],
                 'query'=>[
-                    'key'=>'5f0e9f97-6c01-4d70-acc3-d23aa426c682'
+                    //'key'=>'5f0e9f97-6c01-4d70-acc3-d23aa426c682'
+                    'key'=>'58b63829-3df4-453f-9724-00603323ffb3'
                 ]
             ]);
             $rec_req = [];
