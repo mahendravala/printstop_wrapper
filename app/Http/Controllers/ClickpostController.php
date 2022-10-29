@@ -218,8 +218,10 @@ class ClickpostController extends Controller
             $value['sku'] = '100';
             $value['invoice_number'] = $value['order_id'];
             $pickup_request = new PickupRequest();
+
             $pickup_request->insert([$value]);
         }
+        echo "<pre>";    print_r($value); exit;
         RecAndManifest::dispatch(['id' => $id]);
 
         return redirect("clickpost/recommendations");
