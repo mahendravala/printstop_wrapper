@@ -49,7 +49,8 @@ class RecAndManifest extends Command
 
             // code...
             $order = $pickup_info = $drop_info = $shipment_details = $additional = [];
-            $record['pickup_pincode'] = '400013';
+//            $record['pickup_pincode'] = '400013';
+            $record['pickup_pincode'] = '421302';
 
             $client = new Client([
                 'headers' => [ 'Content-Type' => 'application/json' ],
@@ -68,7 +69,7 @@ class RecAndManifest extends Command
             $rec_req["delivery_type"]   = "FORWARD";
 
             $rec_req["additional"]['custom_fields'][] = ["key" => "shipping_type", "value"=>$record['shipping_type']];
-            $rec_req["additional"]['custom_fields'][] = ["key" => "is_otp_enabled", "value"=>$record['is_otp_enabled']];
+            $rec_req["additional"]['custom_fields'][] = ["key" => "is_otp_enabled", "value"=>(string)$record['otp_required']];
             $rec_req["additional"]['custom_fields'][] = ["key" => "corporate_id", "value"=> '0'];
             $rec_req["additional"]['custom_fields'][] = ["key" => "products_id", "value"=> $record['sku']];
 
@@ -79,8 +80,9 @@ class RecAndManifest extends Command
                     ['body' => json_encode([$rec_req])]);
             $rec_response = \GuzzleHttp\json_encode(\GuzzleHttp\json_decode($response->getBody())->result);
     
-            $meta_object = ClickpostController::parseMeta($response);
-
+           $meta_object = ClickpostController::parseMeta($response);
+//print_r($meta_object);
+//exit;
             if ($meta_object->status == 200) {
 
                 PickupRequest::where('id',$record->id)->update(['rec_response'=> ($rec_response)]);
@@ -90,7 +92,12 @@ class RecAndManifest extends Command
                 $preferences = ClickpostController::parseClickPostResponse($response);
 
                 foreach ($preferences as $key => $preference) {
-                    
+
+		    $manifested = PickupRequest::where('id',$record->id)->where('manifest_status', '0')->count();
+//                    print_r($manifested);exit;
+		    if ($manifested <= 0) {
+		        continue;
+		    }
                     $clickpostManifest->shippingMode = $preference->account_code;
 
                     $orderData = $clickpostManifest->prepareOrderData($preference->cp_id, $record);

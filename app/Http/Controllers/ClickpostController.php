@@ -189,7 +189,7 @@ class ClickpostController extends Controller
                 if(!$header)
                     $header = $row;
                 else
-                    $data[] = array_combine($header, $row);
+                    $data[] = array_combine($header, array_map('trim', $row));
             }
             fclose($handle);
         }
@@ -216,7 +216,7 @@ class ClickpostController extends Controller
             $value['manifest_status'] = 0;
             $value['cod_value'] = 0;
             $value['sku'] = '100';
-            $value['invoice_number'] = $value['order_id'];
+            $value['invoice_number'] = trim($value['order_id']);
             $pickup_request = new PickupRequest();
 
             $pickup_request->insert([$value]);
@@ -324,7 +324,7 @@ class ClickpostController extends Controller
         $shipment_details['invoice_value']      = $orderData->invoice_value;
         $shipment_details['invoice_number']     = $orderData->order_id;
         $shipment_details['invoice_date']       = date('Y-m-d', strtotime($orderData->invoice_date));
-        $shipment_details['reference_number']   = $orderData->reference_number.time();
+        $shipment_details['reference_number']   = $orderData->reference_number;
         $shipment_details['length']             = $orderData->length;
         $shipment_details['breadth']            = $orderData->breadth;
         $shipment_details['weight']             = $orderData->weight; 
