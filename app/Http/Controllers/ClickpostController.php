@@ -136,12 +136,11 @@ class ClickpostController extends Controller
 
         $filename = time().".csv";
         $handle = fopen(public_path("uploads/$filename"), 'w+');
-        fputcsv($handle, array('date', 'id', 'order_status', 'comment', 'type_of_order', 'internal_notes', 'shipping_company', 'tracking_number', 'name', 'email_id', 'product', 'ctype', 'customer_notify', 'orders_due_date', 'cp_id','user_type','customer_name'));
+        fputcsv($handle, array("ID", "Status", "Comments", "EmailNotification", "Shipping company", "Tracking number", "Cpid", 'user_type','customer_name'));
 
         foreach($records as $record) {
             fputcsv($handle, array(
-                '', $record['order_id'], 'Shipped', '','','', $record['shipping_company'], $record['awb'], '', '', '', 
-                '', '', '', $record['cp_id'], $record['user_type'], $record['customer_name']
+                $record['order_id'], 'Shipped', '','1', $record['shipping_company'], $record['awb'], $record['cp_id'], $record['user_type'], $record['customer_name']
                 )
             );
         }
